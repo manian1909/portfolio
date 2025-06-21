@@ -515,6 +515,9 @@ class SandFormation {
     constructor(canvas) {
         this.canvas = canvas;
         this.ctx = canvas.getContext('2d');
+        // Update canvas size to match container
+        this.canvas.width = 650;
+        this.canvas.height = 650;
         this.particles = [];
         this.isActive = false;
         this.colors = colorSchemes[colorScheme];

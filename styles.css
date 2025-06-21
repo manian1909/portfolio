@@ -424,6 +424,11 @@ h3 {
     height: 400px;
     position: relative;
     background: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+    padding: 20px;
 }
 
 .close {
@@ -1041,12 +1046,28 @@ footer {
 
 .canvas-container {
     background: none;
+    width: 650px;
+    /* Increased size to accommodate particle movement */
+    height: 650px;
+    border-radius: 50%;
+    overflow: hidden;
+    position: relative;
 }
 
 #sand-canvas {
     background: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
 }
 
 .hero-visual {
     background: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+    padding: 20px;
 }
