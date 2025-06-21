@@ -567,10 +567,10 @@ class SandFormation {
 
     loadAllLogos() {
         const logoFiles = {
-            python: '/images/python.png',
-            html: '/images/html.png',
-            git: '/images/git.png',
-            node: '/images/node.png'
+            python: './images/python.png',
+            html: './images/html.png',
+            git: './images/git.png',
+            node: './images/node.png'
         };
 
         Object.keys(logoFiles).forEach(logoName => {
