@@ -488,16 +488,26 @@ function getRandomColor(scheme = colorScheme) {
 }
 
 function updateStats() {
-    document.getElementById('active-counter').textContent = activeAnimations;
-    document.getElementById('particle-counter').textContent = totalParticles;
+    const activeCounter = document.getElementById('active-counter');
+    const particleCounter = document.getElementById('particle-counter');
+
+    if (activeCounter) {
+        activeCounter.textContent = activeAnimations;
+    }
+    if (particleCounter) {
+        particleCounter.textContent = totalParticles;
+    }
 }
 
 function calculateFPS() {
+    const fpsElement = document.getElementById('fps-counter');
+    if (!fpsElement) return;
+
     const now = performance.now();
     const delta = now - lastTime;
     lastTime = now;
     const fps = Math.round(1000 / delta);
-    document.getElementById('fps-counter').textContent = fps;
+    fpsElement.textContent = fps;
 }
 
 // Enhanced Sand Formation Animation with Multiple Logos
@@ -970,12 +980,12 @@ class SandFormation {
     animate() {
         if (!this.isActive) return;
 
-        // Clear with semi-transparent overlay for trails during logo formation
+        // Clear with fully transparent background
+        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+
         if (this.phase === 'traveling' || this.phase === 'symbol' || this.phase === 'scattering') {
-            this.ctx.fillStyle = 'rgba(15, 15, 15, 0.25)';
+            this.ctx.fillStyle = 'rgba(0, 0, 0, 0)';
             this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
-        } else {
-            this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
         }
 
         // Phase management
@@ -1111,13 +1121,6 @@ class SandFormation {
         });
 
         this.ctx.globalAlpha = 1;
-
-        // Draw phase indicator
-        this.ctx.fillStyle = '#ffffff';
-        this.ctx.font = '16px Arial';
-        this.ctx.fillText(`Phase: ${this.phase.toUpperCase()}`, 10, 30);
-        this.ctx.fillText(`Timer: ${this.phaseTimer}/${this.phaseDurations[this.phase]}`, 10, 50);
-        this.ctx.fillText(`Current Logo: ${this.symbols[this.currentSymbol].toUpperCase()}`, 10, 70);
 
         requestAnimationFrame(() => this.animate());
     }
